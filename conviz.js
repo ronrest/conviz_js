@@ -10,3 +10,11 @@ var Vertex = function(x, y, z) {
     this.y = parseFloat(y);
     this.z = parseFloat(z);
 };
+
+var Vertex2D = function(x, y) {
+    // Defines a vertex in the 2D space of the canvas screen to be rendered.
+    this.type = "vertex2d";
+    this.x = parseFloat(x);
+    this.y = parseFloat(y);
+};
+
