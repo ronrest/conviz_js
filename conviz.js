@@ -238,4 +238,3 @@ function stopMouseDrag() {
 }
 
 var canvas_center = new Vertex(0, 0, 0);
-
