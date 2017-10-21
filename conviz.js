@@ -86,6 +86,16 @@ function project(vertex) {
     return new Vertex2D(vertex.x, vertex.y);
 }
 
+// function project(vertex) {
+//     // PERSPECTIVE PROJECTION
+//     // BUG: Something is wrong with this calculation.
+//     // Distance between the camera and the plane
+//     var distance = 100;
+//     var ratio = -distance / (vertex.z);
+//     return new Vertex2D(ratio * vertex.x, ratio * (vertex.y));
+// }
+
+
 function render(objects, ctx, dx=0, dy=0) {
     /*  Function to display 3D objects.
         Takes an array listing the objects to render, the context of the canvas
