@@ -146,3 +146,28 @@ function render(objects, ctx, dx=0, dy=0) {
         }
     }
 }
+
+// #############################################################################
+//                               TRANSFOMRATIONS
+// #############################################################################
+
+// Rotate a vertice
+function rotateVertex(vertex, center, theta, phi) {
+    // Rotation matrix coefficients
+    var ct = Math.cos(theta);
+    var st = Math.sin(theta);
+    var cp = Math.cos(phi);
+    var sp = Math.sin(phi);
+
+    // Rotation
+    var x = vertex.x - center.x;
+    var y = vertex.y - center.y;
+    var z = vertex.z - center.z;
+
+    vertex.x = ct * x - st * cp * (-z) + st * sp * y + center.x;
+    vertex.y = sp * (-z) + cp * y + center.y;
+    vertex.z = -(st * x + ct * cp * (-z) - ct * sp * y + center.z);
+
+}
+
+
