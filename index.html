@@ -8,5 +8,29 @@
     </head>
     <body>
         <canvas id="cnv" width="800" height="600"></canvas>
+        <script type="text/javascript">
+        (function() {
+            // Fix the canvas width and height
+            var canvas = document.getElementById('cnv');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            // Objects style
+            var ctx = canvas.getContext('2d');
+
+            // Create the cube
+            var cube_size = canvas.height / 1.5
+            // var cube_center = new Vertex(0, 11*dy/10, 0);
+            var cube_center = new Vertex(200, 50, 10);
+            var cube = new Cube(cube_center, cube_size, fill_color='rgba(124, 10, 255, 0.3)', line_color='rgba(0,0,0,0.3)');
+            var cube2 = new Cube(new Vertex(0, 0, 0), cube_size=100, fill_color='rgba(0, 144, 155, 0.3)', line_color='rgba(0,0,0,0.3)');
+            var square = new Square(new Vertex(0, 0, 100), size=66, fill_color='rgba(255, 10, 124, 0.3)', line_color='rgba(255,0,0,0.3)');
+            var objects = [cube, cube2, square];
+
+            // First render
+            render(objects, ctx);
+            })();
+
+        </script>
     </body>
 </html>
