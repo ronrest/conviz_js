@@ -18,3 +18,35 @@ var Vertex2D = function(x, y) {
     this.y = parseFloat(y);
 };
 
+var Cube = function(center, size, fill_color='rgba(99, 150, 255, 0.3)', line_color='rgba(0,0,0,0.3)') {
+    // Generate the vertices
+    var d = size / 2;
+    this.type = "cube";
+
+    this.vertices = [
+        new Vertex(center.x - d, center.y - d, center.z + d),
+        new Vertex(center.x - d, center.y - d, center.z - d),
+        new Vertex(center.x + d, center.y - d, center.z - d),
+        new Vertex(center.x + d, center.y - d, center.z + d),
+        new Vertex(center.x + d, center.y + d, center.z + d),
+        new Vertex(center.x + d, center.y + d, center.z - d),
+        new Vertex(center.x - d, center.y + d, center.z - d),
+        new Vertex(center.x - d, center.y + d, center.z + d)
+    ];
+
+    // Generate the faces
+    this.faces = [
+        [this.vertices[0], this.vertices[1], this.vertices[2], this.vertices[3]],
+        [this.vertices[3], this.vertices[2], this.vertices[5], this.vertices[4]],
+        [this.vertices[4], this.vertices[5], this.vertices[6], this.vertices[7]],
+        [this.vertices[7], this.vertices[6], this.vertices[1], this.vertices[0]],
+        [this.vertices[7], this.vertices[0], this.vertices[3], this.vertices[4]],
+        [this.vertices[1], this.vertices[6], this.vertices[5], this.vertices[2]]
+    ];
+
+    this.line_colors = [line_color, line_color, line_color, line_color, line_color, line_color];
+    this.line_width = 1
+    this.fill_colors = [fill_color, fill_color, fill_color, fill_color, fill_color, fill_color];
+};
+
+
