@@ -29,9 +29,30 @@
 
             // First render
             render(objects, ctx);
+            var keydown = true;
+
             canvas.addEventListener('mousedown', initMouseDrag);
             document.addEventListener('mousemove', mouseDrag);
             document.addEventListener('mouseup', stopMouseDrag);
+            document.addEventListener("keydown", keyPress);
+            document.addEventListener('keyup', function () {keydown = false;});
+
+            function keyPress(evt) {
+                // # TODO: have an object move based on which arrow is pressed
+                if(keydown) return;
+                switch(evt.key) {
+                    case "ArrowLeft":
+                        console.log("LEFT ARROW PRESSED")
+                        break;
+                    case "ArrowRight":
+                        console.log("RIGHT ARROW PRESSED")
+                        break;
+                };
+                // ArrowUp
+                // ArrowDown
+                keydown = true;
+
+            }
 
             function mouseDrag(evt) {
                 mouseDragRotation(evt, ctx, objects);
