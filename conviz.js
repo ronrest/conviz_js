@@ -71,3 +71,14 @@ var Square = function(center, size, fill_color='rgba(99, 150, 255, 0.3)', line_c
     this.fill_colors = [fill_color];
 };
 
+// #############################################################################
+//                                 DRAWING
+// #############################################################################
+function project(vertex) {
+    /*  ORTHOGRAPHIC PROJECTION
+        Takes a vertex in 3D space and returns a vertex in the 2D plane
+    */
+    // return new Vertex2D(vertex.x, vertex.z);
+    return new Vertex2D(vertex.x, vertex.y);
+}
+
