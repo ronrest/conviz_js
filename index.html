@@ -29,6 +29,14 @@
 
             // First render
             render(objects, ctx);
+            canvas.addEventListener('mousedown', initMouseDrag);
+            document.addEventListener('mousemove', mouseDrag);
+            document.addEventListener('mouseup', stopMouseDrag);
+
+            function mouseDrag(evt) {
+                mouseDragRotation(evt, ctx, objects);
+            }
+
             })();
 
         </script>
