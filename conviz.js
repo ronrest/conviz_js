@@ -71,6 +71,10 @@ var Square = function(center, size, fill_color='rgba(99, 150, 255, 0.3)', line_c
     this.fill_colors = [fill_color];
 };
 
+// TODO: Add grid primitive
+// TODO: Add kernel primitive
+// TODO: Add connection primitive
+
 // #############################################################################
 //                                 DRAWING
 // #############################################################################
