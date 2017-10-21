@@ -82,3 +82,67 @@ function project(vertex) {
     return new Vertex2D(vertex.x, vertex.y);
 }
 
+function render(objects, ctx, dx=0, dy=0) {
+    /*  Function to display 3D objects.
+        Takes an array listing the objects to render, the context of the canvas
+        to display the objects, and other details needed to draw the objects at
+        the right place.
+
+    Args:
+        objects:    () Objects to render
+        ctx:        (html5 Canvas Context)
+        dx:         (int) x offset from center of canvas
+        dy:         (int) y offset from center of canvas
+
+    NOTES:
+        The array can contain several objects to render.
+        These objects have to respect one thing: having a public property named
+        `faces` that is an array listing all the faces of the object.
+        These faces can be anything (square, triangle, dodecagon.. etc)
+        they just need to be arrays listing their vertices.
+    */
+    // Clear the previous frame
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    var dx = dx + ctx.canvas.width / 2;
+    var dy = dy + ctx.canvas.height / 2;
+
+
+    // TODO: fix aspect ratio when screen gets resized
+    // ctx.canvas.width = ctx.canvas.offsetWidth;
+    // ctx.canvas.height = ctx.canvas.offsetHeight;
+
+    // For each object
+    for (var i = 0, n_obj = objects.length; i < n_obj; ++i) {
+        // For each face of the object
+        for (var j = 0, n_faces = objects[i].faces.length; j < n_faces; ++j) {
+            // Current face
+            var face = objects[i].faces[j];
+
+            // Face Colors
+            ctx.lineWidth = objects[i].line_width;
+            ctx.strokeStyle = objects[i].line_colors[j];
+            ctx.fillStyle = objects[i].fill_colors[j];
+
+            // Draw the first vertex of the face - to start the `path`
+            var P = project(face[0]);
+            ctx.beginPath();
+            // NOTE: -y because positive Z points up in 3D space, and positive
+            // y points down in the canvas coordinates
+            ctx.moveTo(P.x + dx, -P.y + dy);
+
+            // Draw the remaining vertices of the face
+            for (var k = 1, n_vertices = face.length; k < n_vertices; ++k) {
+                P = project(face[k]);
+                // NOTE: -y because positive Z points up in 3D space, and positive
+                // y points down in the canvas coordinates
+                ctx.lineTo(P.x + dx, -P.y + dy);
+            }
+
+            // Close the path and draw the face
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+        }
+    }
+}
