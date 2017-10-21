@@ -50,3 +50,24 @@ var Cube = function(center, size, fill_color='rgba(99, 150, 255, 0.3)', line_col
 };
 
 
+var Square = function(center, size, fill_color='rgba(99, 150, 255, 0.3)', line_color='rgba(0,0,0,0.3)') {
+    // Generate the vertices
+    var d = size / 2;
+    this.type = "square";
+    this.vertices = [
+        new Vertex(center.x - d, center.y - d, center.z),
+        new Vertex(center.x - d, center.y + d, center.z),
+        new Vertex(center.x + d, center.y + d, center.z),
+        new Vertex(center.x + d, center.y - d, center.z)
+    ];
+
+    // Generate the faces
+    this.faces = [
+        [this.vertices[0], this.vertices[1], this.vertices[2], this.vertices[3]]
+    ];
+
+    this.line_colors = [line_color];
+    this.line_width = 1;
+    this.fill_colors = [fill_color];
+};
+
