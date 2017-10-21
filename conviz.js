@@ -165,6 +165,14 @@ function render(objects, ctx, dx=0, dy=0) {
 //                               TRANSFOMRATIONS
 // #############################################################################
 
+// TRANSLATE CUBE
+// for (var i = 0; i < 8; ++i) {
+//     cube.vertices[i].x += 50;
+//     cube.vertices[i].y += 20;
+//     cube.vertices[i].z += 15;
+// }
+//
+
 // Rotate a vertice
 function rotateVertex(vertex, center, theta, phi) {
     // Rotation matrix coefficients
