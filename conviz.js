@@ -171,3 +171,47 @@ function rotateVertex(vertex, center, theta, phi) {
 }
 
 
+
+// Events
+var mousedown = false;
+var mx = 0;
+var my = 0;
+
+// Initialize the mouse drag movement
+function initMouseDrag(evt) {
+    // clearTimeout(autorotate_timeout);
+    mousedown = true;
+    mx = evt.clientX;
+    my = evt.clientY;
+}
+
+
+function mouseDragRotation(evt, context, objects) {
+    // TODO: Pass teh context as an arument
+    // alert(objects[1].vertices[1].y);
+    if (mousedown) {
+        var theta = (evt.clientX - mx) * Math.PI / 360;
+        var phi = (evt.clientY - my) * Math.PI / 180;
+
+        // For each object
+        for (var i = 0, n_obj = objects.length; i < n_obj; ++i) {
+            n_vertices = objects[i].vertices.length
+            // For each vertex of the object
+            for (var j = 0; j < n_vertices; ++j)
+                rotateVertex(objects[i].vertices[j], canvas_center, theta, phi);
+        };
+
+        mx = evt.clientX;
+        my = evt.clientY;
+
+        // render(objects, ctx, dx, dy);
+        render(objects, context);
+    }
+}
+
+
+function stopMouseDrag() {
+    mousedown = false;
+    // autorotate_timeout = setTimeout(autorotate, 2000);
+}
+
