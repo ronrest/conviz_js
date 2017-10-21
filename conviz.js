@@ -215,3 +215,5 @@ function stopMouseDrag() {
     // autorotate_timeout = setTimeout(autorotate, 2000);
 }
 
+var canvas_center = new Vertex(0, 0, 0);
+
